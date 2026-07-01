@@ -1,0 +1,19 @@
+{
+  "id": "facil",
+  "titulo": "Nivel Fácil - Dinosaurios",
+  "codigo": {
+    "symbols": {
+      "▲": "T",
+      "■": "R",
+      "●": "E",
+      "★": "X"
+    },
+    "secret": "▲ ■ ● ★",
+    "answer": "TREX"
+  },
+  "puzzle": {
+    "image": "data/dinosaurios/images/trex.jpg",
+    "rows": 2,
+    "cols": 2
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "facil",
+  "titulo": "Nivel Fácil - Mundial",
+  "codigo": {
+    "symbols": {
+      "■": "M",
+      "●": "E",
+      "▲": "S",
+      "★": "I"
+    },
+    "secret": "■ ● ▲ ▲ ★",
+    "answer": "MESSI"
+  },
+  "puzzle": {
+    "image": "data/mundial/images/messi.jpg",
+    "rows": 2,
+    "cols": 2
+  }
+}

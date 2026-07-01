@@ -1,0 +1,23 @@
+{
+  "id": "dificil",
+  "titulo": "Nivel Difícil - Mundial",
+  "codigo": {
+    "symbols": {
+      "♥": "S",
+      "♦": "C",
+      "♣": "A",
+      "♠": "L",
+      "●": "E",
+      "■": "I",
+      "▲": "O",
+      "★": "N"
+    },
+    "secret": "♥ ● ♣ ● ♣ ♠ ♣ ♥",
+    "answer": "SELEccion"
+  },
+  "puzzle": {
+    "image": "data/mundial/images/seleccion.jpg",
+    "rows": 2,
+    "cols": 4
+  }
+}

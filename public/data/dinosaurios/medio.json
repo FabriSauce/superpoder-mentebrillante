@@ -1,0 +1,22 @@
+{
+  "id": "medio",
+  "titulo": "Nivel Medio - Dinosaurios",
+  "codigo": {
+    "symbols": {
+      "★": "T",
+      "◆": "T",
+      "●": "R",
+      "♫": "I",
+      "▲": "C",
+      "■": "E",
+      "♣": "O"
+    },
+    "secret": "★ ◆ ■ ▲ ● ♫ ▲ ● ♣ ★",
+    "answer": "TTRICERATOPS"
+  },
+  "puzzle": {
+    "image": "data/dinosaurios/images/triceratops.jpg",
+    "rows": 2,
+    "cols": 3
+  }
+}

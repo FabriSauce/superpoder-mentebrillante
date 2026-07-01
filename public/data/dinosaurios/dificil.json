@@ -1,0 +1,25 @@
+{
+  "id": "dificil",
+  "titulo": "Nivel Difícil - Dinosaurios",
+  "codigo": {
+    "symbols": {
+      "☆": "V",
+      "♠": "E",
+      "☀": "L",
+      "♫": "O",
+      "⚡": "C",
+      "◆": "I",
+      "▲": "R",
+      "■": "A",
+      "●": "P",
+      "★": "T"
+    },
+    "secret": "☆ ♠ ☀ ♫ ♠ ◆ ▲ ▲ ■ ● ● ♠ ▲ ■ ★ ♫ ♫ ♫",
+    "answer": "VELOCIRAPTOR"
+  },
+  "puzzle": {
+    "image": "data/dinosaurios/images/velociraptor.jpg",
+    "rows": 2,
+    "cols": 4
+  }
+}

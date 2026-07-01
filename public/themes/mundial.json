@@ -1,0 +1,10 @@
+{
+  "id": "mundial",
+  "name": "Mundial",
+  "description": "Descubre los secretos del fútbol",
+  "icon": "🏆",
+  "primaryColor": "#1a5c2a",
+  "secondaryColor": "#ffd700",
+  "levels": ["facil", "medio", "dificil"],
+  "dataPath": "data/mundial"
+}

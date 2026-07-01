@@ -1,0 +1,20 @@
+{
+  "id": "medio",
+  "titulo": "Nivel Medio - Mundial",
+  "codigo": {
+    "symbols": {
+      "☀": "D",
+      "♫": "I",
+      "⚡": "B",
+      "◆": "U",
+      "☆": "A"
+    },
+    "secret": "☀ ♫ ⚡ ◆",
+    "answer": "DIBU"
+  },
+  "puzzle": {
+    "image": "data/mundial/images/dibu.jpg",
+    "rows": 2,
+    "cols": 3
+  }
+}
