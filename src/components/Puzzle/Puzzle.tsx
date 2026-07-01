@@ -60,7 +60,10 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
   }
 
   const gap = 4;
-  const containerWidth = Math.min(500, window.innerWidth - 32);
+  const isDesktop = window.innerWidth >= 768;
+  const containerWidth = isDesktop
+    ? Math.min(750, window.innerWidth - 320)
+    : Math.min(480, window.innerWidth - 32);
 
   return (
     <div style={{ textAlign: 'center', padding: '0.5rem' }}>
@@ -73,117 +76,145 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
         </p>
       )}
 
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: `repeat(${cols}, 1fr)`,
-          gap: `${gap}px`,
-          maxWidth: `${containerWidth}px`,
-          margin: '0 auto',
-          background: '#e0e0e0',
-          padding: `${gap}px`,
-          borderRadius: '12px',
-        }}
-      >
-        {pieces.map((piece, i) => {
-          const isSelected = selected === i;
-          return (
-            <div
-              key={piece.id}
-              onClick={() => handlePieceClick(i)}
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: '1.5rem',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '1rem',
+      }}>
+        {/* Contenedor del tablero del rompecabezas */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: `repeat(${cols}, 1fr)`,
+            gap: `${gap}px`,
+            width: '100%',
+            maxWidth: `${containerWidth}px`,
+            background: '#e0e0e0',
+            padding: `${gap}px`,
+            borderRadius: '12px',
+          }}
+        >
+          {pieces.map((piece, i) => {
+            const isSelected = selected === i;
+            return (
+              <div
+                key={piece.id}
+                onClick={() => handlePieceClick(i)}
+                style={{
+                  aspectRatio: `${aspectRatio}`,
+                  backgroundImage: `url(${piece.dataUrl})`,
+                  backgroundSize: '100% 100%',
+                  backgroundPosition: 'center',
+                  border: isSelected ? '3px solid #667eea' : '3px solid transparent',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  transform: isSelected ? 'scale(0.95)' : 'scale(1)',
+                  boxShadow: isSelected ? '0 0 20px rgba(102,126,234,0.5)' : '0 2px 8px rgba(0,0,0,0.1)',
+                }}
+              />
+            );
+          })}
+        </div>
+
+        {/* Contenedor de la guía visual */}
+        {!complete && (
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            minWidth: isDesktop ? '220px' : '160px',
+            background: 'rgba(255, 255, 255, 0.7)',
+            padding: '1rem',
+            borderRadius: '16px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+            border: '1px solid #eaeaea',
+          }}>
+            <button
+              onClick={() => setShowGuide(!showGuide)}
               style={{
-                aspectRatio: `${aspectRatio}`,
-                backgroundImage: `url(${piece.dataUrl})`,
-                backgroundSize: '100% 100%',
-                backgroundPosition: 'center',
-                border: isSelected ? '3px solid #667eea' : '3px solid transparent',
-                borderRadius: '8px',
+                background: '#f0f0f0',
+                border: 'none',
+                borderRadius: '20px',
+                padding: '8px 16px',
+                fontSize: '0.85rem',
+                color: '#555',
                 cursor: 'pointer',
+                fontWeight: 'bold',
                 transition: 'all 0.2s ease',
-                transform: isSelected ? 'scale(0.95)' : 'scale(1)',
-                boxShadow: isSelected ? '0 0 20px rgba(102,126,234,0.5)' : '0 2px 8px rgba(0,0,0,0.1)',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+                outline: 'none',
               }}
-            />
-          );
-        })}
-      </div>
-
-      {!complete && (
-        <div style={{ marginTop: '1.5rem' }}>
-          <button
-            onClick={() => setShowGuide(!showGuide)}
-            style={{
-              background: '#f0f0f0',
-              border: 'none',
-              borderRadius: '20px',
-              padding: '8px 16px',
-              fontSize: '0.85rem',
-              color: '#555',
-              cursor: 'pointer',
-              fontWeight: 'bold',
-              transition: 'all 0.2s ease',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
-              outline: 'none',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#e4e4e4';
-              e.currentTarget.style.transform = 'translateY(-1px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#f0f0f0';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            {showGuide ? '👁️ Ocultar Guía' : '👁️ Mostrar Guía'}
-          </button>
-
-          {showGuide && (
-            <div
-              style={{
-                marginTop: '1rem',
-                opacity: 1,
-                transition: 'opacity 0.3s ease',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#e4e4e4';
+                e.currentTarget.style.transform = 'translateY(-1px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#f0f0f0';
+                e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              <p style={{ margin: '0 0 0.5rem', fontSize: '0.85rem', color: '#777', fontWeight: 600 }}>
-                Así debe quedar:
-              </p>
+              {showGuide ? '👁️ Ocultar Guía' : '👁️ Mostrar Guía'}
+            </button>
+
+            {showGuide && (
               <div
                 style={{
-                  maxWidth: '150px',
-                  width: '100%',
-                  borderRadius: '12px',
-                  overflow: 'hidden',
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
-                  border: '4px solid #ffffff',
-                  background: '#ffffff',
-                  transition: 'transform 0.2s ease',
-                  cursor: 'zoom-in',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.08)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
+                  marginTop: '1rem',
+                  opacity: 1,
+                  transition: 'opacity 0.3s ease',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
                 }}
               >
-                <img
-                  src={`${import.meta.env.BASE_URL}${image}`}
-                  alt="Guía del rompecabezas"
+                <p style={{ margin: '0 0 0.5rem', fontSize: '0.85rem', color: '#777', fontWeight: 600 }}>
+                  Así debe quedar:
+                </p>
+                <div
                   style={{
+                    maxWidth: isDesktop ? '200px' : '150px',
                     width: '100%',
-                    height: 'auto',
-                    display: 'block',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                    border: '4px solid #ffffff',
+                    background: '#ffffff',
+                    transition: 'all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1)',
+                    cursor: 'zoom-in',
+                    position: 'relative',
+                    zIndex: 1,
                   }}
-                />
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(2.2)';
+                    e.currentTarget.style.zIndex = '10';
+                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                    e.currentTarget.style.zIndex = '1';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.15)';
+                  }}
+                >
+                  <img
+                    src={`${import.meta.env.BASE_URL}${image}`}
+                    alt="Guía del rompecabezas"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                      display: 'block',
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      )}
+            )}
+          </div>
+        )}
+      </div>
 
       {complete && (
         <div style={{ marginTop: '1rem', fontSize: '2rem', animation: 'bounceIn 0.5s ease' }}>

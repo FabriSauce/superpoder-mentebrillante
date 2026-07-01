@@ -63,7 +63,7 @@ export function Game() {
   }
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '1rem' }}>
+    <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1rem', width: '100%' }}>
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -113,7 +113,8 @@ export function Game() {
       <h2 style={{
         textAlign: 'center',
         color: state.currentTheme?.primaryColor ?? '#555',
-        margin: '1rem 0',
+        margin: '1.5rem 0',
+        fontSize: '2rem',
       }}>
         {level.titulo}
       </h2>
