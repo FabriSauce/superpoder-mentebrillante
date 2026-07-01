@@ -15,6 +15,7 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
   const [selected, setSelected] = useState<number | null>(null);
   const [loading, setLoading] = useState(true);
   const [complete, setComplete] = useState(false);
+  const [showGuide, setShowGuide] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -59,7 +60,7 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
   }
 
   const gap = 4;
-  const containerWidth = Math.min(360, window.innerWidth - 40);
+  const containerWidth = Math.min(500, window.innerWidth - 32);
 
   return (
     <div style={{ textAlign: 'center', padding: '0.5rem' }}>
@@ -106,6 +107,83 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
           );
         })}
       </div>
+
+      {!complete && (
+        <div style={{ marginTop: '1.5rem' }}>
+          <button
+            onClick={() => setShowGuide(!showGuide)}
+            style={{
+              background: '#f0f0f0',
+              border: 'none',
+              borderRadius: '20px',
+              padding: '8px 16px',
+              fontSize: '0.85rem',
+              color: '#555',
+              cursor: 'pointer',
+              fontWeight: 'bold',
+              transition: 'all 0.2s ease',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
+              outline: 'none',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#e4e4e4';
+              e.currentTarget.style.transform = 'translateY(-1px)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#f0f0f0';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            {showGuide ? '👁️ Ocultar Guía' : '👁️ Mostrar Guía'}
+          </button>
+
+          {showGuide && (
+            <div
+              style={{
+                marginTop: '1rem',
+                opacity: 1,
+                transition: 'opacity 0.3s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <p style={{ margin: '0 0 0.5rem', fontSize: '0.85rem', color: '#777', fontWeight: 600 }}>
+                Así debe quedar:
+              </p>
+              <div
+                style={{
+                  maxWidth: '150px',
+                  width: '100%',
+                  borderRadius: '12px',
+                  overflow: 'hidden',
+                  boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+                  border: '4px solid #ffffff',
+                  background: '#ffffff',
+                  transition: 'transform 0.2s ease',
+                  cursor: 'zoom-in',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.08)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                }}
+              >
+                <img
+                  src={`/${image}`}
+                  alt="Guía del rompecabezas"
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                  }}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {complete && (
         <div style={{ marginTop: '1rem', fontSize: '2rem', animation: 'bounceIn 0.5s ease' }}>
