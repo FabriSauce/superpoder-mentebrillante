@@ -147,7 +147,17 @@ Este juego está completamente optimizado para compilarse en una aplicación nat
    * **Con Android Studio**: Abre con `npx cap open android` y haz clic en *Build > Build Bundle(s) / APK(s) > Build APK(s)*.
    * **Por terminal (Gradle)**: Ejecuta desde la consola:
      ```bash
-     cd android && ./gradlew assembleDebug
-     ```
+      cd android && ./gradlew assembleDebug
+      ```
 
 Para un tutorial guiado completo de configuración inicial de dependencias de desarrollo de Android, variables de entorno y optimizaciones, consulta la guía [DOCUMENTACION_APK.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_APK.md).
+
+---
+
+## 🌐 Despliegue en Producción (GitHub Pages)
+
+El proyecto cuenta con integración y despliegue continuos (CI/CD) preconfigurados mediante **GitHub Actions**.
+
+Cada vez que realizas un `push` a la rama `main`, la aplicación se compila y se publica automáticamente en GitHub Pages de forma gratuita.
+
+Para conocer cómo activar esto en tu repositorio de GitHub y ver el detalle técnico del workflow de despliegue, consulta la guía [DOCUMENTACION_GITHUB_ACTIONS.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_GITHUB_ACTIONS.md).

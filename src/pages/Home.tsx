@@ -99,7 +99,7 @@ export function Home() {
       dispatch({ type: 'SELECT_THEME', payload: selectedTheme });
 
       // Cargar únicamente el nivel que corresponde a la dificultad elegida
-      const res = await fetch(`/${selectedTheme.dataPath}/${difficultyId}.json`);
+      const res = await fetch(`${import.meta.env.BASE_URL}${selectedTheme.dataPath}/${difficultyId}.json`);
       if (!res.ok) {
         throw new Error(`No se pudo cargar el archivo de dificultad: ${difficultyId}`);
       }

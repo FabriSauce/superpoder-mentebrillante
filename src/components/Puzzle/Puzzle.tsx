@@ -20,7 +20,7 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
   useEffect(() => {
     (async () => {
       setLoading(true);
-      const { pieces: split, aspectRatio: ar } = await splitImage(image, rows, cols);
+      const { pieces: split, aspectRatio: ar } = await splitImage(`${import.meta.env.BASE_URL}${image}`, rows, cols);
       setAspectRatio(ar);
       const shuffled = shufflePieces(split);
       setPieces(shuffled);
@@ -171,7 +171,7 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
                 }}
               >
                 <img
-                  src={`/${image}`}
+                  src={`${import.meta.env.BASE_URL}${image}`}
                   alt="Guía del rompecabezas"
                   style={{
                     width: '100%',

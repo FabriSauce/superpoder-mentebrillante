@@ -77,15 +77,15 @@ export function GameProvider({ children }: { children: ReactNode }) {
     (async () => {
       try {
         const [configRes, themesRes] = await Promise.all([
-          fetch('/config.json'),
-          fetch('/themes/index.json'),
+          fetch(`${import.meta.env.BASE_URL}config.json`),
+          fetch(`${import.meta.env.BASE_URL}themes/index.json`),
         ]);
         const config = await configRes.json();
         const themeList: string[] = await themesRes.json();
 
         const themes: ThemeConfig[] = await Promise.all(
           themeList.map(async (t) => {
-            const res = await fetch(`/themes/${t}.json`);
+            const res = await fetch(`${import.meta.env.BASE_URL}themes/${t}.json`);
             return res.json();
           })
         );

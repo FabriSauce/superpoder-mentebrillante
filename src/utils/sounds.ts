@@ -1,10 +1,10 @@
 const soundCache: Record<string, HTMLAudioElement> = {};
 
 const SOUND_PATHS: Record<string, string> = {
-  success: '/sounds/success.mp3',
-  error: '/sounds/error.mp3',
-  click: '/sounds/click.mp3',
-  finish: '/sounds/finish.mp3',
+  success: `${import.meta.env.BASE_URL}sounds/success.mp3`,
+  error: `${import.meta.env.BASE_URL}sounds/error.mp3`,
+  click: `${import.meta.env.BASE_URL}sounds/click.mp3`,
+  finish: `${import.meta.env.BASE_URL}sounds/finish.mp3`,
 };
 
 export function playSound(name: string, enabled: boolean): void {
