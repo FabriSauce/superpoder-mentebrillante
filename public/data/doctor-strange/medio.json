@@ -1,0 +1,21 @@
+{
+  "id": "medio",
+  "titulo": "Nivel Medio - Doctor Strange",
+  "codigo": {
+    "symbols": {
+      "👁️": "O",
+      "⭐": "R",
+      "⚡": "T",
+      "🌀": "P",
+      "✨": "A",
+      "🛡️": "L"
+    },
+    "secret": "🌀 👁️ ⭐ ⚡ ✨ 🛡️",
+    "answer": "PORTAL"
+  },
+  "puzzle": {
+    "image": "data/doctor-strange/images/doctor_strange_medio.png",
+    "rows": 2,
+    "cols": 3
+  }
+}

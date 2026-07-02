@@ -1,0 +1,19 @@
+{
+  "id": "facil",
+  "titulo": "Nivel Fácil - Doctor Strange",
+  "codigo": {
+    "symbols": {
+      "🔮": "M",
+      "🌀": "A",
+      "✨": "G",
+      "👁️": "O"
+    },
+    "secret": "🔮 🌀 ✨ 👁️",
+    "answer": "MAGO"
+  },
+  "puzzle": {
+    "image": "data/doctor-strange/images/doctor_strange_facil.png",
+    "rows": 2,
+    "cols": 2
+  }
+}
