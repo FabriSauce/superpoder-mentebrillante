@@ -30,7 +30,7 @@ Para brindar una experiencia óptima y adaptiva a las capacidades cognitivas del
 | **7 a 9 años** | Súper Explorador | Medio | 🦊🚀 | **2x3** (6 piezas) | Criptograma intermedio (4-5 letras), aumento en la complejidad espacial. | `medio.json` |
 | **10+ años** | Leyenda del Espacio | Difícil | 🦁🏆 | **2x4** (8 piezas) | Criptograma complejo (8 letras), desafío de memoria y organización visoespacial. | `dificil.json` |
 
-Para más detalles técnicos de esta implementación, consulta [DOCUMENTACION_DIFICULTAD.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_DIFICULTAD.md).
+Para más detalles técnicos de esta implementación, consulta [DOCUMENTACION_DIFICULTAD.md](docs/DOCUMENTACION_DIFICULTAD.md).
 
 ---
 
@@ -48,7 +48,7 @@ El juego incluye dos grandes temáticas con imágenes generadas por inteligencia
 * **Medio**: *Dibu Martínez* realizando una atajada espectacular (`dibu.jpg`).
 * **Difícil**: La *Selección Argentina* festejando la copa con confeti (`seleccion.jpg`).
 
-Para conocer más sobre el procesamiento de estas imágenes y su resolución, consulta [DOCUMENTACION_IMAGENES.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_IMAGENES.md).
+Para conocer más sobre el procesamiento de estas imágenes y su resolución, consulta [DOCUMENTACION_IMAGENES.md](docs/DOCUMENTACION_IMAGENES.md).
 
 ---
 
@@ -60,7 +60,17 @@ Para asistir a los más pequeños o a quienes necesiten un punto de referencia v
 * Añade una **micro-animación** que amplía la miniatura ligeramente (`scale(1.08)`) al pasar el cursor o pulsar sobre ella.
 * El diseño se adapta de manera totalmente responsiva ampliando el tablero hasta un máximo de `500px` de ancho en pantallas grandes.
 
-Para más detalles, consulta [DOCUMENTACION_GUIA_PUZZLE.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_GUIA_PUZZLE.md).
+Para más detalles, consulta [DOCUMENTACION_GUIA_PUZZLE.md](docs/DOCUMENTACION_GUIA_PUZZLE.md).
+
+---
+
+## 🎨 Estilo, Alineación y Tipografía
+
+Para ofrecer una experiencia inmersiva y lúdica adaptada al público infantil:
+* **Tipografía Retro**: Se integró localmente la fuente tipográfica **Monocraft** (estilo pixel-art) para todos los títulos y encabezados de la aplicación, optimizando la visualización y asegurando el soporte sin conexión a Internet (clave para el APK nativo).
+  * Para conocer más detalles de esta implementación, consulta [DOCUMENTACION_FONT.md](docs/DOCUMENTACION_FONT.md).
+* **Centrado y Escala Adaptados**: Se mejoró la ergonomía de la interfaz en pantallas medianas y grandes centrando verticalmente los flujos principales en el contenedor, escalando elementos clave (símbolos de código, campo de respuesta e inputs) y añadiendo micro-animaciones interactivas al pasar el cursor.
+  * Para ver los componentes modificados y cómo ajustar los layouts en el código, consulta [DOCUMENTACION_DISENO_Y_ALINEACION.md](docs/DOCUMENTACION_DISENO_Y_ALINEACION.md).
 
 ---
 
@@ -70,6 +80,14 @@ La arquitectura del código se divide de forma limpia y desacoplada siguiendo bu
 
 ```
 juego-impulsamente/
+├── docs/                        # Documentación detallada del proyecto
+│   ├── DOCUMENTACION_APK.md                  # Manual paso a paso para compilar APK
+│   ├── DOCUMENTACION_DIFICULTAD.md           # Detalle del Selector de Dificultad
+│   ├── DOCUMENTACION_DISENO_Y_ALINEACION.md  # Detalle de alineación, centrado y escala de componentes
+│   ├── DOCUMENTACION_FONT.md                 # Integración de la tipografía local Monocraft
+│   ├── DOCUMENTACION_GITHUB_ACTIONS.md       # Configuración del workflow de CI/CD para GitHub Pages
+│   ├── DOCUMENTACION_GUIA_PUZZLE.md          # Detalle de la Guía Visual Polaroid y zoom interactivo
+│   └── DOCUMENTACION_IMAGENES.md             # Procesamiento y selección de assets visuales
 ├── public/                      # Recursos estáticos servidos en el juego
 │   ├── data/                    # JSONs de configuración por nivel
 │   │   ├── dinosaurios/         # Imágenes y niveles del tema Dinosaurios
@@ -80,6 +98,7 @@ juego-impulsamente/
 │   └── sounds/                  # Efectos de audio (aciertos, errores)
 ├── src/                         # Código fuente de React + TypeScript
 │   ├── assets/                  # Estilos o imágenes compilables
+│   │   └── fonts/               # Fuente Monocraft local
 │   ├── components/              # Componentes visuales atómicos y reutilizables
 │   │   ├── Button/              # Botón personalizado con estilos y feedback
 │   │   ├── Modal/               # Ventanas emergentes (selector de dificultad)
@@ -98,10 +117,6 @@ juego-impulsamente/
 │   ├── index.css                # Sistema de diseño, variables de color CSS y layouts
 │   ├── App.tsx                  # Enrutador principal de fases y contenedor de la app
 │   └── main.tsx                 # Entrada de ejecución de la aplicación web
-├── DOCUMENTACION_APK.md         # Manual paso a paso para compilar APK
-├── DOCUMENTACION_DIFICULTAD.md  # Detalle del Selector de Dificultad
-├── DOCUMENTACION_GUIA_PUZZLE.md # Detalle de la Guía Visual Polaroid
-├── DOCUMENTACION_IMAGENES.md    # Registro y procesamiento de assets visuales
 ├── package.json                 # Gestión de dependencias
 └── tsconfig.json                # Configuración de compilación TypeScript
 ```
@@ -150,7 +165,7 @@ Este juego está completamente optimizado para compilarse en una aplicación nat
       cd android && ./gradlew assembleDebug
       ```
 
-Para un tutorial guiado completo de configuración inicial de dependencias de desarrollo de Android, variables de entorno y optimizaciones, consulta la guía [DOCUMENTACION_APK.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_APK.md).
+Para un tutorial guiado completo de configuración inicial de dependencias de desarrollo de Android, variables de entorno y optimizaciones, consulta la guía [DOCUMENTACION_APK.md](docs/DOCUMENTACION_APK.md).
 
 ---
 
@@ -160,4 +175,4 @@ El proyecto cuenta con integración y despliegue continuos (CI/CD) preconfigurad
 
 Cada vez que realizas un `push` a la rama `main`, la aplicación se compila y se publica automáticamente en GitHub Pages de forma gratuita.
 
-Para conocer cómo activar esto en tu repositorio de GitHub y ver el detalle técnico del workflow de despliegue, consulta la guía [DOCUMENTACION_GITHUB_ACTIONS.md](file:///home/saucedo/Escritorio/Silicon/juego-impulsamente/DOCUMENTACION_GITHUB_ACTIONS.md).
+Para conocer cómo activar esto en tu repositorio de GitHub y ver el detalle técnico del workflow de despliegue, consulta la guía [DOCUMENTACION_GITHUB_ACTIONS.md](docs/DOCUMENTACION_GITHUB_ACTIONS.md).
