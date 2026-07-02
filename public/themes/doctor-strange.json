@@ -1,0 +1,10 @@
+{
+  "id": "doctor-strange",
+  "name": "Doctor Strange",
+  "description": "Domina las artes místicas y rompecabezas multidimensionales",
+  "icon": "🔮",
+  "primaryColor": "#8a1818",
+  "secondaryColor": "#e5a93c",
+  "levels": ["facil", "medio", "dificil"],
+  "dataPath": "data/doctor-strange"
+}

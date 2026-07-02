@@ -30,6 +30,18 @@ Las imágenes para el tema del mundial se encuentran ubicadas en `public/data/mu
 
 ---
 
+## 🔮 Tema: Doctor Strange
+
+Las imágenes para el tema de Doctor Strange se encuentran ubicadas en `public/data/doctor-strange/images/`.
+
+| Nivel | ID/Archivo | Descripción de la Imagen | Ruta de Destino |
+|---|---|---|---|
+| **Fácil** | `doctor_strange_facil.png` | Doctor Strange en versión animada/chibi amigable, optimizada para niños pequeños. | `public/data/doctor-strange/images/doctor_strange_facil.png` |
+| **Medio** | `doctor_strange_medio.png` | Ilustración estilo cómic de Doctor Strange abriendo un portal místico circular dorado. | `public/data/doctor-strange/images/doctor_strange_medio.png` |
+| **Difícil** | `doctor_strange_dificil.png` | Escena cinemática mística épica de Doctor Strange en la dimensión espejo flotando entre fractales y escudos rúnicos brillantes. | `public/data/doctor-strange/images/doctor_strange_dificil.png` |
+
+---
+
 ## 🛠️ Proceso de Preparación de Imágenes
 
 1. **Generación**: Las imágenes se crearon usando herramientas de generación de imágenes por IA en formato PNG. Se especificó en las directrices evitar patrones de cuadrícula superpuestos para que el corte por `Canvas` no se viera alterado.

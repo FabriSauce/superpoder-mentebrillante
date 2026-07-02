@@ -16,6 +16,7 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
   const [loading, setLoading] = useState(true);
   const [complete, setComplete] = useState(false);
   const [showGuide, setShowGuide] = useState(true);
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -28,6 +29,19 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
     })();
   }, [image, rows, cols]);
 
+  const swapPieces = (from: number, to: number) => {
+    const next = [...pieces];
+    [next[from], next[to]] = [next[to], next[from]];
+    next[from] = { ...next[from], currentIndex: from };
+    next[to] = { ...next[to], currentIndex: to };
+    setPieces(next);
+
+    if (isPuzzleComplete(next)) {
+      setComplete(true);
+      setTimeout(onComplete, 800);
+    }
+  };
+
   const handlePieceClick = (index: number) => {
     if (complete) return;
 
@@ -36,18 +50,37 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
     } else if (selected === index) {
       setSelected(null);
     } else {
-      const next = [...pieces];
-      [next[selected], next[index]] = [next[index], next[selected]];
-      next[selected] = { ...next[selected], currentIndex: selected };
-      next[index] = { ...next[index], currentIndex: index };
-      setPieces(next);
+      swapPieces(selected, index);
       setSelected(null);
-
-      if (isPuzzleComplete(next)) {
-        setComplete(true);
-        setTimeout(onComplete, 800);
-      }
     }
+  };
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    if (complete) return;
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', index.toString());
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    if (complete) return;
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent, targetIndex: number) => {
+    if (complete) return;
+    e.preventDefault();
+    const sourceIndexStr = e.dataTransfer.getData('text/plain');
+    const sourceIndex = sourceIndexStr ? parseInt(sourceIndexStr, 10) : draggedIndex;
+    if (sourceIndex === null || sourceIndex === targetIndex) return;
+
+    swapPieces(sourceIndex, targetIndex);
+    setDraggedIndex(null);
+    setSelected(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
   };
 
   if (loading) {
@@ -59,7 +92,7 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
     );
   }
 
-  const gap = 4;
+  const gap = 2;
   const isDesktop = window.innerWidth >= 768;
   const containerWidth = isDesktop
     ? Math.min(750, window.innerWidth - 320)
@@ -100,21 +133,28 @@ export function Puzzle({ image, rows, cols, onComplete }: PuzzleProps) {
         >
           {pieces.map((piece, i) => {
             const isSelected = selected === i;
+            const isDragging = draggedIndex === i;
             return (
               <div
                 key={piece.id}
                 onClick={() => handlePieceClick(i)}
+                draggable={!complete}
+                onDragStart={e => handleDragStart(e, i)}
+                onDragOver={handleDragOver}
+                onDrop={e => handleDrop(e, i)}
+                onDragEnd={handleDragEnd}
                 style={{
                   aspectRatio: `${aspectRatio}`,
                   backgroundImage: `url(${piece.dataUrl})`,
                   backgroundSize: '100% 100%',
                   backgroundPosition: 'center',
-                  border: isSelected ? '3px solid #667eea' : '3px solid transparent',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
+                  border: '1px solid rgba(0,0,0,0.15)',
+                  borderRadius: '3px',
+                  cursor: complete ? 'default' : isSelected || isDragging ? 'grabbing' : 'grab',
                   transition: 'all 0.2s ease',
-                  transform: isSelected ? 'scale(0.95)' : 'scale(1)',
-                  boxShadow: isSelected ? '0 0 20px rgba(102,126,234,0.5)' : '0 2px 8px rgba(0,0,0,0.1)',
+                  opacity: isDragging ? 0.5 : 1,
+                  transform: isSelected || isDragging ? 'scale(0.96)' : 'scale(1)',
+                  boxShadow: isSelected ? '0 0 0 3px #667eea, 0 8px 24px rgba(102,126,234,0.4)' : '0 2px 6px rgba(0,0,0,0.08)',
                 }}
               />
             );

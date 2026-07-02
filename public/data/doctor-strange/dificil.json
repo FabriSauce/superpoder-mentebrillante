@@ -1,0 +1,21 @@
+{
+  "id": "dificil",
+  "titulo": "Nivel Difícil - Doctor Strange",
+  "codigo": {
+    "symbols": {
+      "🌀": "H",
+      "✨": "E",
+      "⚔️": "C",
+      "🛡️": "I",
+      "🔮": "R",
+      "👁️": "O"
+    },
+    "secret": "🌀 ✨ ⚔️ 🌀 🛡️ ⚔️ ✨ 🔮 👁️",
+    "answer": "HECHICERO"
+  },
+  "puzzle": {
+    "image": "data/doctor-strange/images/doctor_strange_dificil.png",
+    "rows": 2,
+    "cols": 4
+  }
+}
